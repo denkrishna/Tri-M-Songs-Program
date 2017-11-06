@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tri-M Songs</title>
+    <!-- The css || Checked-->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/buttons.css" />
+</head>
+
+<body ng-app="sortableApp">
+    <!-- The main -->
+    <table id="testing">
+        <tr>
+            <td class="sidebar">
+                <table>
+                    <tr>
+                        <td class="sidebar">
+                            <h1><img src="assets/img/TriMLogo.jpg" alt="Tri-M Logo"></h1></td>
+                    </tr>
+                    <tr>
+                        <td class="sidebar">
+                            <h1>Song Database</h1></td>
+                    </tr>
+                    <tr>
+                        <td class="sidebar">
+                            <form>
+                                <div ng-controller="buttonController">
+                                    <input name="songs" id="songs" type="text" placeholder="Enter a Song" ng-model="enteredSong" typeahead="songs for songs in songs | filter:$viewValue | limitTo:15" class="form-control" />
+                                    <p></p>
+                                    <input type="text" id="selectedSinger" placeholder="Enter Singer" ng-model="enteredSinger" class="form-control" />
+                                    <p></p>
+                                    <input type="submit" ng-click="addSong()" class="button small" id="theButton" value="ADD SONG" />
+                                    <input type="submit" ng-click="removeSong()" class="button small" id="theButton" value="REMOVE SONG" /> </div>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="sidebar" id="lastRow"> </td>
+                    </tr>
+                </table>
+            </td>
+            <td ng-controller="sortableController" class="section row">
+                <section>
+                    <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+                        <li ng-repeat="item in list" class="item">{{item.text}} || Being sung by {{item.singer}}</li>
+                    </ul>
+                </section>
+            </td>
+        </tr>
+    </table>
+    <!-- The javascript || Checked -->
+    <script src="vendor/jquery.js"></script>
+    <script src="assets/vendor/angular.min.js"></script>
+    <script src="assets/vendor/ui-bootstrap-tpls.min.js"></script>
+    <script src="vendor/jquery-ui.js"></script>
+    <script src="dist/sortable.js"></script>
+    <script src="jquery.csv.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
